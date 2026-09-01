@@ -8,6 +8,8 @@
   <link rel="icon" type="image/webp" href="logo.webp" />
   <link rel="apple-touch-icon" href="logo.webp" />
   <link rel="preload" as="image" href="logo.webp" fetchpriority="high" type="image/webp" />
+  <link rel="preload" as="image" href="bg-desktop.webp" media="(min-width:901px)" fetchpriority="high" type="image/webp" />
+  <link rel="preload" as="image" href="bg-mobile.webp" media="(max-width:900px)" fetchpriority="high" type="image/webp" />
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
@@ -26,22 +28,26 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --marca: #4A2C52;            /* roxo da logo */
-      --marca-escuro: #2C1832;
-      --marca-claro: #6B4275;
-      --amarelo: #F2B830;          /* amarelo do estetoscópio da logo */
-      --amarelo-claro: #FFD064;
-      --roxo-suave: #F6F0F8;
-      --dourado-escuro: #A9761A;   /* versão legível do amarelo sobre fundo claro */
-      --creme: #FDFBFE;
-      --prata: #8A7B8F;
-      --gradiente: linear-gradient(135deg, #2C1832 0%, #4A2C52 55%, #6B4275 100%);
+      --marca: #5C2A83;            /* roxo da marca */
+      --marca-escuro: #3A1755;
+      --marca-claro: #7B41A5;
+      --amarelo: #FFC820;          /* amarelo da marca */
+      --amarelo-claro: #FFD75A;
+      --roxo-suave: #F5EDFA;
+      --amarelo-suave: #FFF7E1;
+      --roxo-vivo: #821DC0;        /* roxo da marca */
+      --gradiente-stats: linear-gradient(135deg, #6A14A0 0%, #821DC0 55%, #9B3BD6 100%);
+      --dourado-escuro: #A97A05;   /* versão legível do amarelo sobre fundo claro */
+      --creme: #FDFAFE;
+      --prata: #8C7E96;
+      --gradiente: linear-gradient(135deg, #FFB800 0%, #FFC820 50%, #FFD75A 100%);
+      --gradiente-roxo: linear-gradient(135deg, #3A1755 0%, #5C2A83 55%, #7B41A5 100%);
       --verde-wpp: #25D366;
       --verde-wpp-hover: #1DA851;
-      --texto: #1F1223;
-      --cinza: #6E6172;
-      --cinza-claro: #F5F2F6;
-      --borda: #E6DFE9;
+      --texto: #1E0F2B;
+      --cinza: #6B6076;
+      --cinza-claro: #F5F1F7;
+      --borda: #E7DEEE;
       --branco: #fff;
     }
 
@@ -69,14 +75,14 @@
 
     /* TOPO */
     .topo {
-      background: var(--gradiente);
+      background: var(--gradiente-stats);
       color: rgba(255,255,255,0.95);
       text-align: center;
       padding: 9px 20px;
       font-size: 13px;
       font-weight: 500;
     }
-    .topo strong { color: var(--amarelo-claro); }
+    .topo strong { color: var(--amarelo); }
 
     .topo-dot {
       display: inline-block;
@@ -136,8 +142,8 @@
     .nav-badge {
       font-size: 11px;
       font-weight: 700;
-      color: var(--branco);
-      background: var(--marca);
+      color: var(--roxo-vivo);
+      background: var(--amarelo);
       border-radius: 999px;
       padding: 3px 10px;
     }
@@ -161,35 +167,70 @@
 
     /* HERO */
     .hero {
+      position: relative;
+      width: 100%;
       min-height: calc(100svh - 104px);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 48px 24px 44px;
-      position: relative;
+      flex-direction: column;
       overflow: hidden;
-      background: radial-gradient(circle at 50% 0%, var(--roxo-suave) 0%, #ffffff 62%);
+      background: var(--branco);
     }
+
+    .hero-foto {
+      position: relative;
+      width: 100%;
+      height: 38vh;
+      min-height: 230px;
+      max-height: 420px;
+      flex-shrink: 0;
+      background: var(--gradiente-stats);
+      overflow: hidden;
+      border-bottom-left-radius: 50% 28px;
+      border-bottom-right-radius: 50% 28px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.14);
+    }
+
+    /* background-size: cover mantem a proporcao real da foto, sem esticar */
+    .hero-foto-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      will-change: opacity;
+    }
+    .hero-foto-slide.ativo { opacity: 1; }
+
+    .foto-1 { background-image: url("bg-desktop.webp"); }
+    /* Para intercalar mais fotos com fade, aponte as classes abaixo para os novos
+       arquivos e reative os slides 2 e 3 no HTML do hero.
+    .foto-2 { background-image: url("clinica-2.webp"); }
+    .foto-3 { background-image: url("clinica-3.webp"); } */
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 660px;
+      flex: 1;
+      max-width: 740px;
       width: 100%;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 22px 7% 60px;
     }
 
     .hero-logo {
-      width: 148px; height: 148px;
+      width: 92px; height: 92px;
       border-radius: 50%;
       overflow: hidden;
-      margin-bottom: 34px;
-      box-shadow: 0 8px 32px rgba(44,24,50,0.22);
+      margin-bottom: 14px;
+      box-shadow: 0 8px 24px rgba(58,23,85,0.22);
       background: var(--branco);
-      padding: 4px;
       flex-shrink: 0;
     }
 
@@ -199,25 +240,48 @@
       border-radius: 50%;
     }
 
+    .hero-small {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--roxo-vivo);
+      line-height: 1.4;
+      max-width: 420px;
+      margin-bottom: 10px;
+    }
+
     .hero h1 {
-      font-size: 50px;
+      font-size: 40px;
       font-weight: 900;
       color: var(--texto);
-      letter-spacing: -1.5px;
+      letter-spacing: -1.2px;
       line-height: 1.14;
-      margin-bottom: 18px;
-      margin-top: 4px;
+      margin-bottom: 12px;
     }
+
+    .hero h1 .h1-marca { color: var(--roxo-vivo); }
+
+    /* "24H" destacado em pilula amarela */
+    .hero h1 .h1-destaque {
+      display: inline-block;
+      color: var(--roxo-vivo);
+      background: var(--gradiente);
+      border-radius: 14px;
+      padding: 2px 14px 6px;
+      line-height: 1;
+      box-shadow: 0 6px 18px rgba(255,184,0,0.45);
+    }
+
+    .hero h1 .h1-linha1 { white-space: nowrap; }
 
     .br-mob { display: none; }
 
-    .hero h1 .h1-destaque { color: var(--marca); }
-
     .hero-rating {
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 500;
       color: var(--cinza);
-      margin-bottom: 34px;
+      line-height: 1.5;
+      max-width: 460px;
+      margin-bottom: 22px;
     }
 
     .hero-btns {
@@ -254,34 +318,42 @@
       color: var(--cinza);
       font-weight: 500;
       text-align: center;
+      width: 100%;
+      max-width: 420px;
     }
 
-    /* STATS */
+    /* STATS (rolagem automatica continua, sem parar) */
     .stats {
-      background: var(--gradiente);
-      padding: 28px 48px;
+      background: var(--gradiente-stats);
+      padding: 26px 0;
+      overflow: hidden;
     }
 
     .stats-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      width: max-content;
       align-items: stretch;
+      animation: statsMarquee 24s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes statsMarquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
 
     .stat {
+      flex: 0 0 auto;
       text-align: center;
-      padding: 8px 16px;
-      border-right: 1px solid rgba(255,255,255,0.18);
+      padding: 8px 38px;
+      border-right: 1px solid rgba(255,255,255,0.28);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
-    .stat:last-child { border-right: none; }
-    .stat-num   { font-size: 26px; font-weight: 900; color: var(--amarelo-claro); letter-spacing: -1px; }
-    .stat-label { font-size: 12px; color: rgba(255,255,255,0.80); margin-top: 4px; font-weight: 500; }
+    .stat-num   { font-size: 22px; font-weight: 900; color: var(--amarelo); letter-spacing: -0.6px; line-height: 1.15; white-space: nowrap; }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,0.82); margin-top: 4px; font-weight: 500; white-space: nowrap; }
 
     /* DEPOIMENTOS */
     .sec-depoi {
@@ -350,14 +422,14 @@
       transition: all 0.2s;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-    .carrossel-btn:hover { background: var(--roxo-suave); }
+    .carrossel-btn:hover { background: var(--amarelo-suave); }
 
     .carrossel-dots { display: flex; gap: 6px; }
 
     .carrossel-dot {
       width: 8px; height: 8px;
       border-radius: 50%;
-      background: #D8CEDC;
+      background: #DCCFE6;
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -426,8 +498,8 @@
     }
 
     .servico-card:hover {
-      background: var(--roxo-suave);
-      border-color: #E4D3EA;
+      background: var(--amarelo-suave);
+      border-color: #FFE9A8;
       transform: translateY(-3px);
     }
 
@@ -443,7 +515,7 @@
 
     .servico-icone svg {
       width: 22px; height: 22px;
-      stroke: var(--amarelo-claro);
+      stroke: var(--marca-escuro);
       fill: none;
       stroke-width: 1.8;
       stroke-linecap: round;
@@ -456,7 +528,7 @@
     .sec-btn-centro { display: flex; justify-content: center; margin-top: 36px; }
     .sec-btn-centro .btn-wpp { max-width: 420px; }
 
-    /* POR QUE (galeria da clínica) */
+    /* POR QUE (texto a esquerda, lista numerada a direita) */
     .sec-porque {
       padding: 88px 48px;
       max-width: 1100px;
@@ -467,48 +539,22 @@
       align-items: center;
     }
 
-    .clinica-galeria {
-      position: relative;
-      width: 100%;
-      max-width: 430px;
-      aspect-ratio: 4 / 3;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(44,24,50,0.18);
-      background: var(--roxo-suave);
-      margin: 0 auto;
-    }
-    .clinica-galeria img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      opacity: 0;
-      transition: opacity 1.2s ease;
-    }
-    .clinica-galeria img.ativo { opacity: 1; }
+    .porque-intro .sec-titulo { font-size: 38px; }
+    .porque-intro .sec-sub { margin-bottom: 0; }
 
-    .motivos { display: flex; flex-direction: column; gap: 8px; }
+    .motivos { display: flex; flex-direction: column; gap: 28px; }
 
     .motivo {
       display: flex;
       align-items: flex-start;
-      gap: 16px;
-      padding: 18px 20px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      transition: all 0.2s;
+      gap: 18px;
     }
 
-    .motivo:hover { background: var(--roxo-suave); border-color: #E4D3EA; }
-
     .motivo-num {
-      width: 36px; height: 36px;
-      border-radius: 10px;
+      width: 40px; height: 40px;
+      border-radius: 12px;
       background: var(--gradiente);
-      color: var(--amarelo-claro);
+      color: var(--marca-escuro);
       font-size: 14px;
       font-weight: 800;
       display: flex;
@@ -517,8 +563,8 @@
       flex-shrink: 0;
     }
 
-    .motivo h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-    .motivo p  { font-size: 13px; color: var(--cinza); line-height: 1.5; }
+    .motivo h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .motivo p  { font-size: 14px; color: var(--cinza); line-height: 1.55; }
 
     /* CTA */
     .sec-cta-wrap { background: var(--gradiente); }
@@ -536,15 +582,15 @@
       letter-spacing: -1px;
       line-height: 1.15;
       margin-bottom: 14px;
-      color: #ffffff;
+      color: var(--marca-escuro);
     }
 
-    .sec-cta h2 span { color: var(--amarelo-claro); }
+    .sec-cta h2 span { color: var(--marca); }
 
     .sec-cta-texto {
       font-size: 15px;
       line-height: 1.6;
-      color: rgba(255,255,255,0.80);
+      color: rgba(58,23,85,0.80);
       margin-bottom: 32px;
     }
 
@@ -619,24 +665,27 @@
 
     /* RESPONSIVO */
     @media (max-width: 900px) {
-      nav { padding: 12px 20px; }
-      nav .nav-nome, nav .nav-badge { display: none; }
+      nav { display: none; }
 
-      .hero { min-height: calc(100svh - 96px); padding: 36px 14px 36px; }
-      /* 32px + letter-spacing justo para "24H em Belo Horizonte" caber em uma linha */
-      .hero h1 { font-size: 32px; letter-spacing: -1.5px; margin-bottom: 16px; }
-      .hero-rating { font-size: 16px; margin-bottom: 30px; }
+      .hero { min-height: calc(100svh - 36px); }
+      .hero-foto { height: 30vh; min-height: 190px; }
+      .foto-1 { background-image: url("bg-mobile.webp"); }
+      .hero-content { max-width: 100%; padding: 20px 20px 48px; }
+      .hero-logo { width: 84px; height: 84px; margin-bottom: 12px; }
+      .hero-small { font-size: 13px; margin-bottom: 8px; }
+      /* escala com a largura do aparelho para "Veterinária 24H" caber em uma linha */
+      .hero h1 { font-size: clamp(34px, 9.5vw, 40px); letter-spacing: -1.4px; margin-bottom: 10px; }
+      .hero h1 .h1-destaque { border-radius: 12px; padding: 2px 11px 5px; }
+      .hero h1 .h1-linha1 { white-space: normal; }
+      .hero-rating { font-size: 16px; margin-bottom: 20px; }
       .br-mob { display: inline; }
       .br-desk { display: none; }
-      .hero-logo { width: 120px; height: 120px; margin-bottom: 28px; }
       .hero-btns { max-width: 100%; }
 
-      .stats { padding: 0 20px; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .stat { padding: 20px 12px; border-right: 1px solid rgba(255,255,255,0.18); border-bottom: 1px solid rgba(255,255,255,0.18); }
-      .stat:nth-child(2) { border-right: none; }
-      .stat:nth-child(3) { grid-column: 1 / -1; border-right: none; border-bottom: none; }
-      .stat-num { font-size: 20px; }
+      .stats { padding: 20px 0; }
+      .stat { padding: 6px 24px; }
+      .stat-num { font-size: 19px; }
+      .stat-label { font-size: 11px; }
 
       .sec-depoi { padding: 56px 0; }
       .sec-depoi-inner { padding: 0 20px; text-align: center; }
@@ -654,9 +703,9 @@
       .servico-card { text-align: center; }
       .servico-icone { margin-left: auto; margin-right: auto; }
 
-      .sec-porque { grid-template-columns: 1fr; gap: 40px; padding: 56px 20px; text-align: center; }
-      .clinica-galeria { max-width: 420px; }
-      .motivos { align-items: center; }
+      .sec-porque { grid-template-columns: 1fr; gap: 36px; padding: 56px 20px; text-align: center; }
+      .porque-intro .sec-titulo { font-size: 26px; }
+      .motivos { align-items: center; gap: 24px; }
       .motivo { text-align: left; max-width: 440px; width: 100%; }
 
       .sec-cta { padding: 56px 20px; }
@@ -677,6 +726,13 @@
     /* telas muito estreitas (abaixo de 360px): reduz o mínimo para não quebrar a linha */
     @media (max-width: 359px) {
       .hero h1 { font-size: 8.9vw; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-foto-slide { transition: none; }
+      .topo-dot { animation: none; }
+      .stats-inner { animation: none; }
     }
 
   </style>
@@ -709,13 +765,17 @@
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-foto">
+    <div class="hero-foto-slide foto-1 ativo"></div>
+    <!-- <div class="hero-foto-slide foto-2"></div>
+         <div class="hero-foto-slide foto-3"></div> -->
+  </div>
   <div class="hero-content">
     <div class="hero-logo">
-      <img src="logo.webp" alt="Doutora das Patas Clínica Veterinária 24h" decoding="async" loading="eager" width="148" height="148" />
+      <img src="logo.webp" alt="Doutora das Patas Clínica Veterinária 24h" decoding="async" loading="eager" width="92" height="92" />
     </div>
-    <h1>
-      <span class="h1-destaque">Clínica Veterinária 24H</span><br />em Belo Horizonte
-    </h1>
+    <p class="hero-small">Doutora das Patas</p>
+    <h1><span class="h1-linha1"><span class="h1-marca">Clínica <br class="br-mob" />Veterinária</span> <span class="h1-destaque">24H</span></span><br />em Belo Horizonte</h1>
     <p class="hero-rating">Prontos para qualquer emergência<br class="br-mob" /> que seu pet precisar!</p>
     <div class="hero-btns">
       <a href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." class="btn-wpp">
@@ -729,7 +789,7 @@
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stats-inner">
+  <div class="stats-inner" id="statsTrack">
     <div class="stat">
       <div class="stat-num">24h</div>
       <div class="stat-label">Aberta todos os dias</div>
@@ -803,8 +863,8 @@
 <!-- SERVIÇOS -->
 <div class="sec">
   <span class="sec-tag">O que fazemos</span>
-  <h2 class="sec-titulo">A qualquer hora do dia ou da noite, <span>seu pet tem para onde ir</span></h2>
-  <p class="sec-sub">Emergência não avisa. E quando o susto acontece de madrugada, no fim de semana ou naquele feriado em que tudo está fechado, saber que existe uma equipe de confiança pertinho de você muda tudo. Na Doutora das Patas, profissionais atenciosos e apaixonados cuidam do seu companheiro com competência, carinho e estrutura completa, em todas as horas e em todas as fases da vida dele.</p>
+  <h2 class="sec-titulo">A qualquer hora do dia ou da noite, <br class="br-desk" /><span>seu pet tem para onde ir</span></h2>
+  <p class="sec-sub">Emergência não avisa. E quando o susto acontece de madrugada, no fim de semana ou naquele feriado a Clínica Veterinária 24H Doutora das Patas está pronta para te atender.</p>
   <div class="servicos-grid">
     <div class="servico-card">
       <div class="servico-icone">
@@ -860,15 +920,11 @@
 <!-- POR QUE -->
 <div style="background:var(--cinza-claro); padding: 1px 0;">
   <div class="sec-porque">
-    <div class="clinica-galeria">
-      <img src="clinica1.webp" class="ativo" alt="Estrutura da Doutora das Patas Clínica Veterinária 24h" loading="lazy" decoding="async" />
-      <img src="clinica2.webp" alt="Estrutura da Doutora das Patas Clínica Veterinária 24h" loading="lazy" decoding="async" />
-      <img src="clinica3.webp" alt="Estrutura da Doutora das Patas Clínica Veterinária 24h" loading="lazy" decoding="async" />
-      <img src="clinica4.webp" alt="Estrutura da Doutora das Patas Clínica Veterinária 24h" loading="lazy" decoding="async" />
+    <div class="porque-intro">
+      <span class="sec-tag">Diferencial</span>
+      <h2 class="sec-titulo">Por que escolher <span>a Doutora das Patas?</span></h2>
     </div>
     <div>
-      <span class="sec-tag">Por que escolher a Doutora das Patas?</span>
-      <h2 class="sec-titulo" style="font-size:32px;">Cuidado que<br class="br-mob" /> <span>não dorme.</span></h2>
       <div class="motivos">
         <div class="motivo">
           <div class="motivo-num">01</div>
@@ -964,6 +1020,64 @@
 </a>
 
 <script>
+  /* Stats: clona os itens ate a faixa ficar mais larga que a tela,
+     assim o loop e continuo e nunca abre espaco vazio no fim */
+  (function() {
+    var faixa = document.getElementById('statsTrack');
+    if (!faixa) return;
+    var base = faixa.innerHTML;
+    var t;
+
+    function montar() {
+      faixa.style.animation = 'none';
+      faixa.innerHTML = base;
+      var larguraBase = faixa.scrollWidth;
+      if (!larguraBase) return;
+      var copias = Math.max(2, Math.ceil(window.innerWidth / larguraBase) + 1);
+      var metade = '';
+      for (var i = 0; i < copias; i++) metade += base;
+      faixa.innerHTML = metade + metade;
+      var duracao = (faixa.scrollWidth / 2) / 55; /* 55px por segundo */
+      faixa.style.animation = 'statsMarquee ' + duracao.toFixed(1) + 's linear infinite';
+    }
+
+    montar();
+    window.addEventListener('resize', function() {
+      clearTimeout(t);
+      t = setTimeout(montar, 250);
+    });
+  })();
+
+  /* Fotos da clinica no hero, troca com fade (ignora as que ainda nao foram enviadas) */
+  (function() {
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.hero-foto-slide'));
+    var pendentes = slides.length;
+    if (!pendentes) return;
+
+    function iniciar() {
+      var lista = document.querySelectorAll('.hero-foto-slide');
+      if (!lista.length) return;
+      lista[0].classList.add('ativo');
+      if (lista.length < 2) return;
+      var atual = 0;
+      setInterval(function() {
+        lista[atual].classList.remove('ativo');
+        atual = (atual + 1) % lista.length;
+        lista[atual].classList.add('ativo');
+      }, 5000);
+    }
+
+    slides.forEach(function(slide) {
+      var bg = getComputedStyle(slide).backgroundImage;
+      var achou = bg && bg.match(/url\(["']?(.*?)["']?\)/);
+      if (!achou) { slide.remove(); if (--pendentes === 0) iniciar(); return; }
+      var img = new Image();
+      img.onload  = function() { if (--pendentes === 0) iniciar(); };
+      img.onerror = function() { slide.remove(); if (--pendentes === 0) iniciar(); };
+      img.src = achou[1];
+    });
+  })();
+
   /* Carrossel de Depoimentos */
   var slideAtual = 0;
   var totalSlides = document.querySelectorAll('.carrossel-slide').length;
@@ -1009,35 +1123,15 @@
   setInterval(function() { moverCarrossel(1); }, 5000);
   window.addEventListener('resize', atualizarCarrossel);
 
-  /* Galeria da clínica com fade (ignora imagens ainda não enviadas) */
-  var galeria = document.querySelector('.clinica-galeria');
-  var galeriaAtual = 0;
+  /* Bloqueia zoom por pinca e duplo toque no mobile */
+  document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
+  var ultimoToque = 0;
+  document.addEventListener('touchend', function(e) {
+    var agora = new Date().getTime();
+    if (agora - ultimoToque < 300) e.preventDefault();
+    ultimoToque = agora;
+  }, false);
 
-  function iniciarGaleria() {
-    var imgs = galeria.querySelectorAll('img');
-    if (!imgs.length) {
-      galeria.style.display = 'none';
-      galeria.parentElement.style.gridTemplateColumns = '1fr';
-      return;
-    }
-    imgs[0].classList.add('ativo');
-    if (imgs.length < 2) return;
-    setInterval(function() {
-      imgs[galeriaAtual].classList.remove('ativo');
-      galeriaAtual = (galeriaAtual + 1) % imgs.length;
-      imgs[galeriaAtual].classList.add('ativo');
-    }, 4000);
-  }
-
-  var pendentes = galeria.querySelectorAll('img').length;
-  function checarGaleria() { if (--pendentes === 0) iniciarGaleria(); }
-
-  galeria.querySelectorAll('img').forEach(function(img) {
-    img.addEventListener('error', function() { img.remove(); checarGaleria(); });
-    if (img.complete && img.naturalWidth > 0) { checarGaleria(); }
-    else if (img.complete) { img.remove(); checarGaleria(); }
-    else { img.addEventListener('load', checarGaleria); }
-  });
 </script>
 </body>
 </html>
