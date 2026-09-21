@@ -21,9 +21,9 @@ A página anterior continua no histórico do Git (commit 0aea132); os arquivos d
 | Foto | Onde aparece |
 |---|---|
 | `destaque-cirurgia` veterinário em cirurgia (765×1020) | card "Cirurgias com segurança" e linha "Cirurgias" |
-| `destaque-exames` cão internado recebendo soro (574×1020) | card "Internação 24 horas" e linha "Internação 24h" |
+| `destaque-exames` cão internado recebendo soro (574×1020) | card "Internação 24 horas" e linha "Emergência 24h" |
 | `destaque-consultas` veterinária com um shih-tzu na mesa de vacinação (574×1020) | card "Consultas e vacinação" e linha "Vacinas" |
-| `card-caes` pug no colo da veterinária, fundo roxo (800×800) | card "cães" |
+| `card-caes` pug no colo da veterinária, fundo roxo (800×800) | card "cães" e linha "Internação 24h" |
 | `card-gatos` siamês, fundo roxo (800×800) | card "gatos" |
 | `etapa-01` veterinária diante da parede com a logo (recorte 740×440 da foto vertical) | etapa 01 "Atendimento imediato" e linha "Consultas" |
 | `etapa-02` tutor e cão na recepção, com a logo dourada (recorte 574×341) | etapa 02 "Sem espera" |
@@ -31,9 +31,13 @@ A página anterior continua no histórico do Git (commit 0aea132); os arquivos d
 | `etapa-04` lulu-da-pomerânia feliz no colo da tutora (recorte 740×440) | etapa 04 "Acompanhamento próximo" |
 
   Os recortes das etapas foram feitos a partir dos originais (fotos verticais viraram faixas horizontais). Para refazer um recorte, parta do original em `brand-assets`.
-- Fotos do template que continuam (sem marca de outra clínica): `hero-cao-1100/1600` (golden retriever do hero) e `servico-emergencia` (cão deitado no asfalto, linha "Emergência 24h")
+- Foto do template que continua (sem marca de outra clínica): `hero-cao-1100/1600` (golden retriever do hero). A `servico-emergencia` do template (cão deitado no asfalto) foi apagada em 21/09/2026
 
 Para trocar qualquer outra foto, salve com o mesmo nome e no mesmo formato; se mudar a proporção, ajuste `width`/`height` na tag `<img>`.
+
+## Ajustes pedidos pelo cliente (fora do template)
+- 14/09/2026: "24H" da headline no verde do WhatsApp com halo escuro
+- 21/09/2026 (os mesmos da Vet Paulistano): sem os botões "Saiba mais" (lista de serviços e cards cães/gatos) e sem as setas dos destaques; linha "Emergência 24h" com a foto do cão no soro no lugar do cão deitado no asfalto; cards cães e gatos com a foto redonda, a etiqueta e o título abaixo, sem o fundo roxo, e a palavra gigante na cor da marca centralizada atrás do círculo
 
 ## Cores (template turquesa → Doutora das Patas)
 Tiradas da logo e da página atual: roxo da marca `#821DC0`, amarelo `#FFC820` e o ameixa do fundo da logo `#382A48`.

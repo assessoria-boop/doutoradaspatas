@@ -639,8 +639,6 @@
       .only-d { display: none !important; }
       /* mobile: hero estatico, sem animar a foto grande (ela e o LCP; a animacao atrasava o Speed Index) */
       .hero-cao, .hero-gigante { animation: none; }
-      /* cards caes e gatos: sem o "Saiba mais" no celular (pedido do cliente) */
-      .pc-mais { display: none; }
     }
 
     /* ════════════════ DESKTOP (prancheta 1440) ════════════════ */
@@ -849,6 +847,29 @@
       .rv.vis, .hero-cao, .hero-gigante, .serv-pill, .wpp-float::before { animation: none; }
       .btn-wpp::after { display: none; }
     }
+    /* ── CARDS CAES E GATOS: foto redonda com etiqueta e titulo abaixo (pedido de 21/09/2026) ── */
+    .pc { height: auto; display: flex; flex-direction: column; align-items: center; padding: 78px 24px 34px; }
+    .pc--caes, .pc--gatos { background: none; }
+    .pc-img { position: relative; inset: auto; z-index: 1; width: 250px; height: 250px; flex-shrink: 0; border-radius: 50%; border: 6px solid #E7D9F4; box-shadow: 0 16px 36px rgba(30,15,43,.16); }
+    /* palavra gigante na cor da marca, centralizada: a metade de cima aparece acima da foto e a de baixo passa por tras do circulo */
+    .pc-gigante, .pc--gatos .pc-gigante {
+      z-index: 0; left: 50%; right: auto; top: -8px; transform: translateX(-50%); white-space: nowrap;
+      background: linear-gradient(180deg, rgba(116,25,173,.9) 40%, rgba(116,25,173,0) 78%);
+      -webkit-background-clip: text; background-clip: text;
+    }
+    .pc-vidro, .pc--caes .pc-vidro, .pc--gatos .pc-vidro { position: relative; inset: auto; z-index: 1; height: auto; align-items: center; justify-content: flex-start; gap: 14px; margin-top: 26px; padding: 0; background: none; border: 0; }
+    .pc-tag { align-self: center; border-color: var(--c-muted); color: var(--c-muted); }
+    .pc-baixo { justify-content: center; }
+    .pc-h3 { align-items: center; text-align: center; color: var(--c-ink); }
+    .pc:hover { box-shadow: none; }
+    .pc:hover .pc-img { transform: scale(1.04); }
+    .pc:hover .pc-vidro { transform: none; }
+    @media (min-width: 1024px) {
+      .pc { height: 602px; justify-content: flex-start; padding: 112px 40px 48px; }
+      .pc-img { width: 320px; height: 320px; border-width: 8px; }
+      .pc-gigante, .pc--gatos .pc-gigante { top: -34px; right: auto; }
+      .pc-vidro, .pc--caes .pc-vidro, .pc--gatos .pc-vidro { margin-top: 32px; gap: 16px; padding: 0; }
+    }
   </style>
 </head>
 <body>
@@ -986,7 +1007,6 @@
           <h3><span>Cirurgias com</span><span>segurança</span></h3>
           <div class="dc-row">
             <p>Procedimentos realizados por uma equipe experiente e dedicada.</p>
-            <a class="dc-seta" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp aria-label="Saiba mais sobre cirurgias pelo WhatsApp"><svg class="i"><use href="#i-seta"/></svg></a>
           </div>
         </div>
       </div>
@@ -997,9 +1017,6 @@
         <span class="dc-tag">Monitoramento</span>
         <div class="dc-main">
           <h3><span>Internação</span><span>24 horas</span></h3>
-          <div class="dc-row">
-            <a class="dc-seta" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp aria-label="Saiba mais sobre internação pelo WhatsApp"><svg class="i"><use href="#i-seta"/></svg></a>
-          </div>
         </div>
       </div>
     </article>
@@ -1009,9 +1026,6 @@
         <span class="dc-tag">Cães e gatos</span>
         <div class="dc-main">
           <h3><span>Consultas e</span><span>vacinação</span></h3>
-          <div class="dc-row">
-            <a class="dc-seta" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp aria-label="Saiba mais sobre consultas e vacinação pelo WhatsApp"><svg class="i"><use href="#i-seta"/></svg></a>
-          </div>
         </div>
       </div>
     </article>
@@ -1038,16 +1052,14 @@
         <span class="sr-nome">Consultas</span>
         <span class="sr-desc">Diagnóstico cuidadoso e orientação clara para o tratamento certo.</span>
       </div>
-      <a class="sr-btn" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp>Saiba mais</a>
     </div>
     <div class="sr rv aberto padrao">
-      <span class="sr-midia"><img src="img/servico-emergencia.webp" width="420" height="353" alt="Cão em atendimento veterinário de emergência" loading="lazy" decoding="async" /></span>
+      <span class="sr-midia"><img style="object-position:50% 57%" src="img/destaque-exames.webp" width="574" height="1020" alt="Cão em atendimento de emergência na Doutora das Patas, recebendo soro" loading="lazy" decoding="async" /></span>
       <div class="sr-info">
         <span class="sr-ic"><svg class="i"><use href="#i-raio"/></svg></span>
         <span class="sr-nome">Emergência 24h</span>
         <span class="sr-desc">Urgência e emergência atendidas na hora, sem espera e sem desespero.</span>
       </div>
-      <a class="sr-btn" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp>Saiba mais</a>
     </div>
     <div class="sr rv">
       <span class="sr-midia"><img style="object-position:50% 35%" src="img/destaque-cirurgia.webp" width="765" height="1020" alt="Veterinário da Doutora das Patas realizando uma cirurgia" loading="lazy" decoding="async" /></span>
@@ -1056,16 +1068,14 @@
         <span class="sr-nome">Cirurgias</span>
         <span class="sr-desc">Procedimentos realizados por uma equipe experiente e dedicada.</span>
       </div>
-      <a class="sr-btn" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp>Saiba mais</a>
     </div>
     <div class="sr rv">
-      <span class="sr-midia"><img style="object-position:50% 57%" src="img/destaque-exames.webp" width="574" height="1020" alt="Cão internado recebendo soro na Doutora das Patas" loading="lazy" decoding="async" /></span>
+      <span class="sr-midia"><img style="object-position:50% 38%" src="img/card-caes.webp" width="800" height="800" alt="Pug no colo da veterinária" loading="lazy" decoding="async" /></span>
       <div class="sr-info">
         <span class="sr-ic"><svg class="i"><use href="#i-pulso"/></svg></span>
         <span class="sr-nome">Internação 24h</span>
         <span class="sr-desc">Acompanhamento próximo e boletins que trazem tranquilidade nos momentos delicados.</span>
       </div>
-      <a class="sr-btn" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp>Saiba mais</a>
     </div>
     <div class="sr rv">
       <span class="sr-midia"><img class="foco-baixo" src="img/destaque-consultas.webp" width="574" height="1020" alt="Veterinária atendendo um cão na mesa de vacinação" loading="lazy" decoding="async" /></span>
@@ -1074,7 +1084,6 @@
         <span class="sr-nome">Vacinas</span>
         <span class="sr-desc">Imunização em dia e proteção contra doenças em cada fase da vida do seu pet.</span>
       </div>
-      <a class="sr-btn" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp>Saiba mais</a>
     </div>
   </div>
 </section>
@@ -1088,7 +1097,6 @@
       <span class="pc-tag"><svg class="i"><use href="#i-tag"/></svg>Atendimento humanizado</span>
       <div class="pc-baixo">
         <h3 class="pc-h3"><span>Profissionais apaixonados</span><span>pelo seu companheiro</span></h3>
-        <a class="pc-mais" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp>Saiba mais <svg class="i"><use href="#i-seta"/></svg></a>
       </div>
     </div>
   </article>
@@ -1099,7 +1107,6 @@
       <span class="pc-tag"><svg class="i"><use href="#i-tag"/></svg>Estrutura acolhedora</span>
       <div class="pc-baixo">
         <h3 class="pc-h3"><span>Conforto para o pet,</span><span>confiança para você</span></h3>
-        <a class="pc-mais" href="https://wa.me/553131912377?text=Ol%C3%A1%20encontrei%20voc%C3%AAs%20pelo%20Google%2C%20gostaria%20de%20atendimento." target="_blank" rel="noopener" data-wpp>Saiba mais <svg class="i"><use href="#i-seta"/></svg></a>
       </div>
     </div>
   </article>
