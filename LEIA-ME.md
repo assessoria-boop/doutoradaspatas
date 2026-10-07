@@ -10,7 +10,7 @@ A página anterior continua no histórico do Git (commit 0aea132); os arquivos d
 - WhatsApp 553131912377, mensagem "Olá encontrei vocês pelo Google, gostaria de atendimento." (o número nunca aparece na página)
 - Google Tag Manager `GTM-N5TSFJSC` e Microsoft Clarity `xyrr5fudci`: carregam na primeira interação (mouse, toque, rolagem ou tecla), sem timer, para ficarem fora da medição do PageSpeed
 - Mapa do Google: o mesmo embed da página atual (`4v1786124439392`), que só carrega quando a dobra de contato se aproxima
-- Todos os CTAs principais: verde do WhatsApp, texto "ATENDIMENTO IMEDIATO", mesmo link, e mudam para "ABRINDO O WHATSAPP" no clique. O botão do cabeçalho mantém "Entre em contato", como na prancheta
+- CTAs: um por dobra, no padrão das outras páginas (HV Levet, You Petz, Elective) — cabeçalho "Entre em contato", hero "SEJA ATENDIDO AGORA", depoimentos "Falar com Veterinário Agora", serviços "Atendimento rápido agora", etapas "Seja Atendido Agora" e card de contato "ATENDIMENTO IMEDIATO". Todos no verde do WhatsApp, com o mesmo link e o mesmo tamanho, e mudam para "ABRINDO O WHATSAPP" no clique
 
 ## Imagens (`img/`)
 - `avaliacao-1..5.webp`: os prints reais do Google (os mesmos `1.webp`–`5.webp` da raiz), 496×636, recomprimidos de 359 KB para 176 KB no total
@@ -38,6 +38,8 @@ Para trocar qualquer outra foto, salve com o mesmo nome e no mesmo formato; se m
 ## Ajustes pedidos pelo cliente (fora do template)
 - 14/09/2026: "24H" da headline no verde do WhatsApp com halo escuro
 - 21/09/2026 (os mesmos da Vet Paulistano): sem os botões "Saiba mais" (lista de serviços e cards cães/gatos) e sem as setas dos destaques; linha "Emergência 24h" com a foto do cão no soro no lugar do cão deitado no asfalto; cards cães e gatos com a foto redonda, a etiqueta e o título abaixo, sem o fundo roxo, e a palavra gigante na cor da marca centralizada atrás do círculo
+- 24/09/2026: dobra "O que fazemos" (destaques) oculta por CSS — para voltar, apague as duas linhas `.sec-dest { display: none; }`; botões no fim das dobras de depoimentos e de serviços; cards de cães e gatos com a foto redonda sobre a palavra gigante; feixe de luz no "24H"; card de contato com um único botão branco, centralizado no celular; botão flutuante do WhatsApp visível desde o início
+- 07/10/2026, o padrão das outras páginas (HV Levet, You Petz, Elective, Cãopanheiros): hero claro com H1 escuro ("Veterinária" no roxo da marca e "24H" no verde escuro `#16A34A`, que lê sobre o branco), nome gigante da marca e barra do topo ocultos, serviços e etapas em cinza `#EDEDEB`, um CTA por dobra — todos no verde do WhatsApp e do mesmo tamanho do botão do hero (324x56 no celular, 352x67 no desktop) —, subheadline em `h2` com texto de apoio em `h3`, botão no fim das etapas e dobra de FAQ com 7 perguntas mais os dados estruturados FAQPage. Entrou como bloco de override no fim do `<style>`, sem mexer no CSS original
 
 ## Cores (template turquesa → Doutora das Patas)
 Tiradas da logo e da página atual: roxo da marca `#821DC0`, amarelo `#FFC820` e o ameixa do fundo da logo `#382A48`.
@@ -64,20 +66,22 @@ Toda a copy vem da página atual e do documento de copy do cliente. Adaptações
 - Cards cães e gatos: atendimento humanizado e estrutura acolhedora
 - Contato: "A saúde do seu pet não espera. E nós também não." com o endereço da R. Maquiné, 22
 
-## Fidelidade
+## Fidelidade (até os ajustes de 24/09 e 07/10/2026)
+A partir desses dois pacotes a página deixa de bater com a prancheta de propósito: o hero virou claro, a dobra de destaques está oculta e entraram a dobra de FAQ e os botões do fim das dobras.
+
 - Desktop: as dobras começam nas mesmas alturas da prancheta (Destaques 1679, Serviços 2434, Cards 3676, Etapas 4290, Contato 5052, Rodapé 5582; total 5.841 px contra 5.840)
 - Mobile: mesma estrutura e ordem; os prints de avaliação aparecem inteiros (sem o corte de 470 px da prancheta); os títulos de Destaques e Contato, mais longos que os da prancheta, ocupam uma linha a mais no celular
 - Cards de destaque ocupando a largura toda, como nas outras páginas feitas com este template
 - Sem rolagem lateral em 390 e 1440 px
 
-## Desempenho (Lighthouse 12 local, servidor com gzip, 14/09/2026)
+## Desempenho (Lighthouse 12 local, servidor com gzip, 07/10/2026)
 | | Performance | Acessibilidade | Boas práticas | SEO |
 |---|---|---|---|---|
-| Desktop | 100 | 93 | 100 | 100 |
-| Mobile | 96 | 93 | 100 | 100 |
+| Desktop | 100 | 88 | 100 | 100 |
+| Mobile | 95 | 88 | 100 | 100 |
 
-- Mobile: LCP 2,3 s, FCP 1,3 s, TBT 60 ms, CLS 0. Desktop: LCP 0,7 s, FCP 0,3 s, CLS 0
-- Acessibilidade 93 vem do bloqueio de zoom no celular, que é requisito do projeto
+- Mobile: LCP 2,3 s, FCP 1,2 s, TBT 130 ms, CLS 0. Desktop: LCP 0,7 s, FCP 0,3 s, CLS 0
+- Acessibilidade: 10 pontos saem do bloqueio de zoom no celular e 7 do contraste do texto branco sobre o verde do WhatsApp nos botões do fim das dobras (o botão do hero sempre teve o mesmo contraste; o Lighthouse não o acusa por causa da faixa de brilho). As duas coisas são requisito do projeto e as outras páginas do padrão estão iguais
 - Fontes Manrope e Montserrat servidas localmente (subset latin), sem CSS externo
 
 ## Conferência local
