@@ -909,7 +909,8 @@
       background: linear-gradient(180deg, var(--c-logo) 18%, transparent 90%);
       -webkit-background-clip: text; background-clip: text; color: transparent; pointer-events: none;
     }
-    .pc--gatos .pc-gigante { background: linear-gradient(180deg, color-mix(in srgb, var(--c-light) 55%, var(--c-brand) 45%) 18%, transparent 90%); -webkit-background-clip: text; background-clip: text; }
+    /* "caes" e "gatos" na mesma cor roxa (pedido do cliente em 07/10/2026) */
+    .pc--gatos .pc-gigante { background: linear-gradient(180deg, var(--c-logo) 18%, transparent 90%); -webkit-background-clip: text; background-clip: text; }
     .pc-foto {
       position: relative; z-index: 1; width: 220px; height: 220px; flex-shrink: 0;
       border-radius: 50%; overflow: hidden; border: 8px solid #fff; background: #fff;
@@ -958,9 +959,10 @@
     .hero-h1 .l2 { color: var(--c-brand); }
     /* no claro sai o halo escuro e o feixe branco, que so faziam sentido sobre o fundo colorido;
        o verde do WhatsApp nao le sobre o branco, entao o "24H" usa o verde escuro */
-    .hero-h1 .h24 { color: #16A34A; text-shadow: none; }
+    /* "24H" no amarelo da logo (pedido do cliente em 07/10/2026) */
+    .hero-h1 .h24 { color: var(--c-light); text-shadow: none; }
     .hero-h1 .h24::after { display: none; }
-    @keyframes h24-pulso { 0%, 6%, 18%, 100% { transform: none; filter: none; } 11% { transform: translateY(-4px) scale(1.05); filter: drop-shadow(0 6px 14px rgba(22,163,74,.45)); } }
+    @keyframes h24-pulso { 0%, 6%, 18%, 100% { transform: none; filter: none; } 11% { transform: translateY(-4px) scale(1.05); filter: drop-shadow(0 6px 14px rgba(255,200,32,.55)); } }
     /* nome gigante da marca atras da foto oculto nas duas larguras */
     .hero-gigante { display: none; }
     .hero-sub { color: var(--c-body); font-weight: 600; }
