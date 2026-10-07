@@ -1087,6 +1087,35 @@
       .sec-aval .car-h2 { justify-content: center; }
       .sec-aval .car-p { width: auto; max-width: 620px; }
     }
+    /* ── MESCLA DE CORES POR DOBRA (pedido do cliente em 07/10/2026) ──
+       Uma cor por dobra, alternando: hero amarelo, cards do hero roxos, depoimentos amarelos,
+       serviços roxos, cães e gatos amarelos, etapas roxas, FAQ amarela, contato roxo, rodapé ameixa.
+       O amarelo da logo nao le como texto sobre fundo claro (1,8:1), entao nas dobras amarelas
+       ele fica nos preenchimentos e o texto usa o mesmo amarelo fechado (#A9761A, 4,7:1). */
+    :root { --c-ouro: #A9761A; }
+
+    /* depoimentos: dobra amarela */
+    .sec-aval .car-tag, .sec-aval .car-h2 .c { color: var(--c-ouro); }
+    .sec-aval .car-prog span { background: var(--c-light); }
+
+    /* cards de caes e gatos: dobra amarela */
+    .sec-pets .pc .pc-gigante, .sec-pets .pc--gatos .pc-gigante {
+      background: linear-gradient(180deg, #EFAF08 18%, transparent 90%);
+      -webkit-background-clip: text; background-clip: text;
+    }
+    .sec-pets .pc .pc-tag { color: var(--c-ouro); border-color: #E9D29A; }
+    .sec-pets .pc .pc-tag svg { color: var(--c-ouro); }
+
+    /* FAQ: dobra amarela */
+    .sec-faq .car-tag, .faq-h2 .c { color: var(--c-ouro); }
+    .faq-ic { color: var(--c-ouro); border-color: #E9D29A; }
+    .faq:hover { border-color: #E9D29A; }
+    .faq.aberta .faq-ic { background: var(--c-light); border-color: var(--c-light); color: var(--c-ink); }
+    .faq-mais::before, .faq-mais::after { background: var(--c-ouro); }
+
+    /* rodape ameixa: o link fica num lilas da propria familia, para a dobra nao ter as duas cores */
+    .rod-chegar { color: #D9B8F2; }
+    .rod-chegar:hover { color: #fff; }
   </style>
 </head>
 <body>
