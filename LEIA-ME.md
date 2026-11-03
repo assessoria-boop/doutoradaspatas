@@ -26,8 +26,8 @@ A página anterior continua no histórico do Git (commit 0aea132); os arquivos d
 | `card-caes` pug no colo da veterinária, fundo roxo (800×800) | card "cães" e linha "Internação 24h" |
 | `card-gatos` siamês, fundo roxo (800×800) | card "gatos" |
 | `etapa-01` veterinária diante da parede com a logo (recorte 740×440 da foto vertical) | etapa 01 "Atendimento imediato" e linha "Consultas" |
-| `etapa-02` tutor e cão na recepção, com a logo dourada (recorte 574×341) | etapa 02 "Sem espera" |
-| `etapa-03` raio-X em um shih-tzu (recorte 740×440) | etapa 03 "Diagnóstico cuidadoso" |
+| `etapa-02` tutor e cão na recepção, com a logo dourada (recorte 574×341) | etapa 02 "Sem espera" e linha "Emergência 24h" |
+| `etapa-03` raio-X em um shih-tzu (recorte 740×440) | etapa 03 "Diagnóstico cuidadoso" e linha "Exames" |
 | `etapa-04` lulu-da-pomerânia feliz no colo da tutora (recorte 740×440) | etapa 04 "Acompanhamento próximo" |
 
   Os recortes das etapas foram feitos a partir dos originais (fotos verticais viraram faixas horizontais). Para refazer um recorte, parta do original em `brand-assets`.
@@ -39,24 +39,11 @@ Para trocar qualquer outra foto, salve com o mesmo nome e no mesmo formato; se m
 - 14/09/2026: "24H" da headline no verde do WhatsApp com halo escuro
 - 21/09/2026 (os mesmos da Vet Paulistano): sem os botões "Saiba mais" (lista de serviços e cards cães/gatos) e sem as setas dos destaques; linha "Emergência 24h" com a foto do cão no soro no lugar do cão deitado no asfalto; cards cães e gatos com a foto redonda, a etiqueta e o título abaixo, sem o fundo roxo, e a palavra gigante na cor da marca centralizada atrás do círculo
 - 24/09/2026: dobra "O que fazemos" (destaques) oculta por CSS — para voltar, apague as duas linhas `.sec-dest { display: none; }`; botões no fim das dobras de depoimentos e de serviços; cards de cães e gatos com a foto redonda sobre a palavra gigante; feixe de luz no "24H"; card de contato com um único botão branco, centralizado no celular; botão flutuante do WhatsApp visível desde o início
+- 03/11/2026, pedidos do cliente: textos de destaque de volta ao roxo da marca (hero e demais dobras); fim da redundância "avaliações reais" / "Depoimentos reais" — o título virou "Belo Horizonte confia na Doutora das Patas", no padrão das outras páginas; selo do Google (4,9 · 123 avaliações) abaixo do texto da dobra de depoimentos; a linha "Emergência 24h" trocou a foto do cão no soro pela do tutor com o cão na recepção; nova linha "Exames" (raio-X) antes de "Vacinas", com ícone próprio
 - 07/10/2026, o padrão das outras páginas (HV Levet, You Petz, Elective, Cãopanheiros): hero claro com H1 escuro e a segunda linha inteira ("Veterinária 24H") no amarelo da logo `#FFC820`, por pedido do cliente — o contraste desse amarelo sobre o branco é baixo, 1,8:1, nome gigante da marca e barra do topo ocultos, serviços e etapas em cinza `#EDEDEB`, um CTA por dobra — todos no verde do WhatsApp e do mesmo tamanho do botão do hero (324x56 no celular, 352x67 no desktop) —, subheadline em `h2` com texto de apoio em `h3`, botão no fim das etapas e dobra de FAQ com 7 perguntas mais os dados estruturados FAQPage. Entrou como bloco de override no fim do `<style>`, sem mexer no CSS original
 
-## Mescla de cores por dobra (07/10/2026)
-Uma cor por dobra, alternando entre o amarelo e o roxo da marca — nunca as duas na mesma dobra:
-
-| Dobra | Cor |
-|---|---|
-| Hero (headline "Veterinária 24H") | amarelo |
-| Cards #1 #2 #3 do hero | roxo |
-| Depoimentos (tag, título e barra do carrossel) | amarelo |
-| Serviços (palavra gigante, ícones e linha em destaque) | roxo |
-| Cards de cães e gatos (palavras gigantes e etiquetas) | amarelo |
-| Etapas (tag, título, números e barra) | roxo |
-| FAQ (tag, título, ícones e sinal de +) | amarelo |
-| Card de contato | roxo |
-| Rodapé | ameixa da logo, com o link "Como chegar" em lilás |
-
-O amarelo da logo  não se lê como texto sobre fundo claro (1,8:1), então nas dobras amarelas ele fica nos preenchimentos (barra do carrossel, ícone do FAQ aberto, palavras gigantes) e os textos usam o mesmo amarelo fechado,  (4,7:1). Os botões seguem todos no verde do WhatsApp.
+## Cor dos textos (03/11/2026)
+A mescla de cores por dobra (amarelo e roxo alternados, de 07/10) foi desfeita a pedido do cliente: **todo texto de destaque é o roxo da marca**. O amarelo da logo tem contraste de 1,8:1 sobre fundo claro e não funcionava como texto. Hoje o amarelo só aparece na própria logo e nas estrelas do selo do Google. Na headline, "Veterinária" usa `--c-brand` e o "24H" o roxo mais vivo `--c-logo`, para se destacar dentro da linha. O link "Como chegar" do rodapé ficou em lilás.
 
 ## Cores (template turquesa → Doutora das Patas)
 Tiradas da logo e da página atual: roxo da marca `#821DC0`, amarelo `#FFC820` e o ameixa do fundo da logo `#382A48`.
